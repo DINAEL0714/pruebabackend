@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Alquileres</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <h1>Alquileres</h1>
+    <label for="startDate">Fecha Inicial:</label>
+    <input type="date" id="startDate">
+    <label for="endDate">Fecha Final:</label>
+    <input type="date" id="endDate">
+    <button onclick="fetchRents()">Filtrar</button>
+
+    <table id="rentsTable">
+        <thead>
+            <tr>
+                <th>ID Card</th>
+                <th>Name</th>
+                <th>Rent Date</th>
+                <th>Time</th>
+                <th>Balance</th>
+                <th>Plate</th>
+                <th>Brand</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Datos serán insertados aquí -->
+        </tbody>
+    </table>
+
+    <h2>Estadísticas</h2>
+    <div id="stats">
+        <div>
+            <h3>Alquileres Diarios</h3>
+            <div id="dailyRents"></div>
+        </div>
+        <div>
+            <h3>Alquileres Mensuales</h3>
+            <div id="monthlyRents"></div>
+        </div>
+    </div>
+
+    <script src="../js/scripts.js"></script>
+</body>
+</html>
