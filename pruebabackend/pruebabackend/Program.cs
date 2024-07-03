@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 using System.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +18,7 @@ builder.Services.AddSingleton<SqlConnection>(sp =>
     return new SqlConnection(connectionString);
 });
 builder.Services.AddControllers();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -37,9 +43,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 
 app.Run();
