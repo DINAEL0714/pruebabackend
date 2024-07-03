@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +16,21 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configurar la canalización de solicitudes
+// Probar la conexión a la base de datos
+try
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    using (var connection = new SqlConnection(connectionString))
+    {
+        connection.Open();
+        Console.WriteLine("Conexión a la base de datos exitosa.");
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error al conectar a la base de datos: {ex.Message}");
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
